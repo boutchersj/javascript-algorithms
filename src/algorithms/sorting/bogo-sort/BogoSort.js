@@ -10,14 +10,15 @@ export default class BogoSort extends Sort {
     const array = [...originalArray];
 
     // Determine if the array is sorted
-    function isSorted(arr) {
+    const isSorted = (arr) => {
       for (let i = 0; i < arr.length - 1; i += 1) {
-        if (arr[i] > arr[i + 1]) {
+        this.callbacks.visitingCallback(arr[i]);
+        if (this.comparator.greaterThan(arr[i], arr[i + 1])) {
           return false;
         }
       }
       return true;
-    }
+    };
 
     // If array has less than or equal to one elements then it is already sorted.
     if (array.length <= 1) {
